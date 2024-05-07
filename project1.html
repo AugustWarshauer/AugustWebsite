@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUGUST WARSHAUER</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="side1.css">
+
+    <!-- Latest compiled and minified CSS 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">   
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/ir-black.min.css">
+
+
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6XX4JKHYP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W6XX4JKHYP');
+</script>
+
+<body style="background-color: black;">
+    <div class="box-container" style="color: white; opacity: 0.5;"></div>
+    <div class="jumbotron text-center" style="background-size: cover"id="overlay">
+        <h1><a class="do-not-disturb" href="https://www.augustwarshauer.com" style="text-decoration: none;     color: white;
+            font-family: Times New Roman, Times, serif; font-size: 60px;">AUGUST WARSHAUER</a></h1>
+    </div>
+    <!-- <div class="do-not-disturb" ><a class="do-not-disturb" id="overlay2">A product of chance</a></div> -->
+
+    <script src="app.js"></script>
+    <script src="side1.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    
+
+    <div class="headd">
+        <small class="head-author-color absolute right-h uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>May 3, 2024</small>
+        <small class="head-author-color absolute left-h uppercase font-bold text-xs rounded-bl-md2 px-2 py-1"><span class="sr-only">Language:</span>August Warshauer</small>
+        <h1 class="author">KALSHI SPREAD ANALYSIS</h1>
+    </div>
+    <!--
+    <div class="footer">
+        <p>This original material is the property of August Warshauer</p>
+    </div>
+    -->
+
+    <p class="paragraph"><br>
+    Alright! First of [likely] many project/blog posts! I'll go ahead and preface this as being a pretty surface level piece. Without full orderbook data, it's difficult investigate liquidity.
+    That being said, the spread is still important, as I've shown here. 
+    <br> <br>
+    So what is <a href="https://kalshi.com/" target="_blank" rel="noopener noreferrer" class="inline-link" style="color: rgb(91,207,154)">Kalshi</a>? And what are <a href="https://kalshi.com/learn/article/what-is-event-contract" target="_blank" rel="noopener noreferrer" class="inline-link">event contracts</a>? If you aren't familiar, I'd recomend checking them out and understanding them before continuing. Let's start by retrieving our data. Kalshi provides an API where you can place orders and access market history. The market structure of the exchange is simple, but it's a bit different than equities or derivatives. It's organized as <code class="inline-code">Series -> Event -> Market</code> with a series being the highest level, and a market being the lowest. For example, the INX series ticker represents "S&P daily close price range". This series has an event each day, for example, "S&P close price range on May 6, 2024". This event has the individual markets that are traded on, for example, "S&P close price range on May 6, 2024 is between $5,100-$5,124.99". Every market has its own orderbook and trades, so iterating through every market and event is critical for analyzing any particular series. 
+    <br> <br>
+    When getting spread data, I wanted to take a realistic bid-ask spread. What I mean by this, is when a market becomes "dead", a spread might be wide and skew our data since the outcome is sure to be determined <code class="inline-code green">YES</code> or <code class="inline-code red">NO</code> with certainty. For example, in the "Highest Temperature in NYC on May 5, 2024" event, there is a market that prices the weather at "54° or below". Once the temperature reaches 55°, everyone should know that the market will inevitably resolve to <code class="inline-code red">NO</code>. So the <code class="inline-code red">NO-ask</code> will be priced at 100¢, and in some cases 99¢ (I assume due to a combination of volume rebates and mispriced algorithms). If there are no outstanding <code class="inline-code red">NO-ask</code> orders, Kalshi's market history returns the best ask price as 100¢. There will simultaneously be many <code class="inline-code green">NO-bid</code> orders priced at anywhere between 1¢ and 99¢. So if we include this in our spread data, we would record a spread of likely more than 50¢, when the cause isn't due to lack of liquidity or pricing trouble, but rather the market being prematurely deterministic.
+    <br> <br>
+    To solve this issue, I will assume that individual trades are made rationally, when bid-ask spreads can be trusted and the market isn't dead. By finding the Best Bid and Offer at each individual trade, I should get competitive spreads. Doing this looks like:
+    <br><br>
+    </p>    
+    
+
+    <div class="codeblock">
+        <small class="bg-black/30 absolute top-0 right-0 uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>Python</small>
+        <pre><code class="language-python hljs">data = []
+i=1
+while i < len(markets_response['history']):
+    if markets_response['history'][i]['volume'] > markets_response['history'][i-1]['volume']:
+        data.append(markets_response['history'][i-1])
+    i+=1
+return data</code>
+    </pre>    
+    </div>
+
+
+    <p class="paragraph">
+    *Note: It should be mentioned that <code class="inline-code">yes_price = 100 - no_price</code> and equally <code class="inline-code">no_price = 100 - yes_price</code> <br> Following, we notice that any oustanding <code class="inline-code red">NO-ask</code> is equivalent to <code class="inline-code red">YES-bid</code> at price of <code class="inline-code">100¢ - NO-ask</code> price. Indeed, when you submit a limit order, Kalshi displays and adds this in both YES and NO terms to the orderbook.
+
+    <br> <br> 
+    
+    I iterate through every timestamp in the market history and compare the current volume to the last. When volume changes, I know someone has filled an order, and record the best <code class="inline-code green">YES-ask</code> and <code class="inline-code red">YES-bid</code>. Doing so gives me a list of all unique instantaneous bid and asks spreads that were crossed in each market. Another comment to make is that Kalshi's built-in get_trades API function won't work for finding trade spreads. This is because they only return the trade price. When converting timestamps and searching for this trade in history, you quickly find there is often a big interval between the recorded trade timestamp and it's recognition in the market history volume. Creating an interval timestamp searching algorithm dissapointingly leads to an even more inefficient way to collect this data by orders of magnitude. 
+
+    <br> <br>
+
+    I've decided, partially arbitrarily, to look at the series: <code class="inline-code grey">INX INXU NASDAQ100 NASDAQ100U BTCD</code>.
+    These should give more narrow spreads given their volume and populatiry (also, <a href="https://sig.com/" class="inline-link" target="_blank" rel="noopener noreferrer" style="color: rgb(70, 149, 210)">SIG</a> moved into many of these in April). Calling and downloading all of this data took nearly 2 hours. It collectively represents over 1.5 million individual bids and asks. To look at these spreads, I opened and plotted them in R/RStudio. They reveal the following statistics:
+    
+    </p>
+    <p class="paragraph" style="font-family: Helvetica, Arial, sans-serif;
+    color: white; font-size: 24pt; margin-top: 0px; margin-bottom: 0px;">INX</p>
+    <img class="imageblock" src="/Graphs/INX_numbers.png" alt="Series data tests image" >
+    <p class="paragraph" style="font-family: Helvetica, Arial, sans-serif;
+    color: white; font-size: 24pt; margin-top: 0px; margin-bottom: 0px;">INXU</p>
+    <img class="imageblock" src="/Graphs/INXU_numbers.png" alt="Series data tests image" >
+    <p class="paragraph" style="font-family: Helvetica, Arial, sans-serif;
+    color: white; font-size: 24pt; margin-top: 0px; margin-bottom: 0px;">NASDAQ100</p>
+    <img class="imageblock" src="/Graphs/NASDAQ100_numbers.png" alt="Series data tests image" >
+    <p class="paragraph" style="font-family: Helvetica, Arial, sans-serif;
+    color: white; font-size: 24pt; margin-top: 0px; margin-bottom: 0px;">NASDAQ100U</p>
+    <img class="imageblock" src="/Graphs/NASDAQ100U_numbers.png" alt="Series data tests image" >
+    <p class="paragraph" style="font-family: Helvetica, Arial, sans-serif;
+    color: white; font-size: 24pt; margin-top: 0px; margin-bottom: 0px;">BTCD</p>
+    <img class="imageblock" src="/Graphs/BTCD_numbers.png" alt="Series data tests image" >
+    
+
+    <p class="paragraph">
+    <br>
+
+    Any reference to an <code class="inline-code">implied_theo</code> column represents the mean between the <code class="inline-code green">YES-ask</code> and <code class="inline-code red">YES-bid</code>, providing the implied theoretical value of each contract. 
+
+    <br> <br>
+    First thing to note when looking at these results is that the series <code class="inline-code grey">INX</code> and <code class="inline-code grey">NASDAQ100</code> have low average contract values: around 25¢. However, this makes sense. These markets give ranges, so they will naturally be skewed right. Our hypothesis is strengthened when looking at the above/below series <code class="inline-code grey">INXU</code>, <code class="inline-code grey">NASDAQ100U</code>, and <code class="inline-code grey">BTCD</code>, which have an <code class="inline-code">implied_theo</code> of close to 50¢.
+    <br> <br>
+    When now visualizing this data, I will use the common three-sigma rule (3σ) and filter out any outliers that this range characterizes. Some simple <code class="inline-code grey">INX</code> charts are:
+    <br> <br>
+    </p>
+    <img class="imageblock" src="/Graphs/Kistory_INX_spread_3SD.png" alt="INX spread image" style="background-color:antiquewhite;">
+    <br> <br>
+    <img class="imageblock" src="/Graphs/Kistory_INX_theo-spread_density.png" alt="INX density image" >
+    <p class="paragraph">
+    <br> <br>
+    The first chart is straightforward - draw your own conclusions. My personal opinion is I don't see much spread improvement over the time period. But, a monthly spread average of under 2¢ is very narrow and to be expected in popular series like <code class="inline-code grey">INX</code>, expecially considering volatiliy fluctuations. 
+    <br> <br>
+    The second chart shows a density distribution of <code class="inline-code">implied_theo</code> versus spread. Naturally, slopes of gradient 1/2 converge to create a triangle. What is interesting is a high frequency of extremely low value contracts being traded. As seen below, the series <code class="inline-code grey">INXU</code> doesn't exhibit this trait, showing a bimodal distribution. This, too, falls from the nature of series pricing mechanism: range vs. above/below: 
+    <br> <br>
+    </p>
+    <img class="imageblock" src="/Graphs/Kistory_INXU_theo-spread_density.png" alt="INXU density image" >
+    <p class="paragraph">
+    <br> <br>
+    Here are the rest of the charts:
+    <br> <br>
+    </p>
+
+    <div class='image-row paragraph'>
+        <div class='image-column'>
+            <img class="imageblock-left" src="/Graphs/Kistory_BTCD_spread_3SD.png" alt="BTCD spread image" style="background-color:antiquewhite;" >
+        </div>
+        <div class='image-column'>
+            <img class="imageblock-right" src="/Graphs/Kistory_INXU_spread_3SD.png" alt="INXU spread image" style="background-color:antiquewhite;" >
+        </div>
+    </div>
+    <div class='image-row paragraph'>
+        <div class='image-column'>
+            <img class="imageblock-left" src="/Graphs/Kistory_NASDAQ100_spread_3SD.png" alt="NASDAQ100 spread image" style="background-color:antiquewhite;">
+        </div>
+        <div class='image-column'>
+            <img class="imageblock-right" src="/Graphs/Kistory_NASDAQ100U_spread_3SD.png" alt="NASDAQ100U spread image" style="background-color:antiquewhite;">
+        </div>
+    </div>
+    <p class="paragraph">
+    <br> <br>
+    Thanks for reading! If Kalshi provided the full orderbook history, there would be a lot more to look at. I know this is quite surface level, but it should suffice for a first and hastily made post. More is coming - particularily surrounding a more scientific <span class="bitcoin">BTC</span> volatility project and more when I get to it...
+    <br> <br> <br> <br>
+    All graphs, text, and materials on this page are original. Please do not reproduce this media without permission.
+    <br> <br>
+    </p>
+    
+</body>
+</html>
