@@ -64,6 +64,20 @@
     text-align: center;
     
 }
+.headd2 {
+    position: relative;
+    margin-left: 20%;
+    margin-right:20%;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: white; 
+    border-radius: 10px;
+    border: 2px solid #f7931a;
+    text-align: center;
+}
 .author {
     font-family: Helvetica, Arial, sans-serif;
     color: white;
@@ -227,6 +241,11 @@ div.codeblock span.copied-message {
 }
 .head-author-color {
     background-color: rgba(91,207,154, 0.35);
+    color: white;
+    z-index: 1;
+}
+.head-author-color2 {
+    background-color: rgba(247,147,26, 0.35);
     color: white;
     z-index: 1;
 }

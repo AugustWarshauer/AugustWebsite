@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUGUST WARSHAUER: Bitcoin Daily Pricing</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="side1.css">
+
+    <!-- Latest compiled and minified CSS 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">   
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/ir-black.min.css">
+
+
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6XX4JKHYP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W6XX4JKHYP');
+</script>
+
+<body style="background-color: black;">
+    <div class="box-container" style="color: white; opacity: 0.5;"></div>
+    <div class="jumbotron text-center" style="background-size: cover"id="overlay">
+        <h1><a class="do-not-disturb" href="https://www.augustwarshauer.com" style="text-decoration: none;     color: white;
+            font-family: Times New Roman, Times, serif; font-size: 60px;">AUGUST WARSHAUER</a></h1>
+    </div>
+    <!-- <div class="do-not-disturb" ><a class="do-not-disturb" id="overlay2">A product of chance</a></div> -->
+
+    <script src="app2.js"></script>
+    <script src="side1.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    
+
+    <div class="headd2">
+        <small class="head-author-color2 absolute right-h uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>May 21, 2024</small>
+        <small class="head-author-color2 absolute left-h uppercase font-bold text-xs rounded-bl-md2 px-2 py-1"><span class="sr-only">Language:</span>August Warshauer</small>
+        <h1 class="author">Bitcoin Daily Pricing</h1>
+    </div>
+    <!--
+    <div class="footer">
+        <p>This original material is the property of August Warshauer</p>
+    </div>
+    -->
+
+
+    <p class="paragraph"><br>
+    To preface, this project's aim is to price the Bitcoin Daily above/below ranges on <a href="https://kalshi.com/" target="_blank" rel="noopener noreferrer" class="inline-link" style="color: rgb(91,207,154)">Kalshi</a> [Ticker: <code class="inline-code grey">BTCD</code>]. I won't go through full details on my methods, as my results are very close to the prices of Kalshi Trading (KT), meaning if KT leaves the market, I would profit.  
+    <br><br>
+    From the volume and liquidity, it is clear either Kalshi Trading (Kalshi Market's spin off liquidity provider), SIG, or a very sophisticated individual is providing the bid/asks in this market. After SIG went down, I noticed the volume was still there, meaning our trades are almost always going to be against KT for now. 
+    <br> <br>
+    To price Bitcoin dailies, we first need data. I will simplify my pricing target by trading in 8 hour intervals, starting at 9:00am EST every morning, to expire at 5:00pm EST. You may gather the UNIX timestamps using: 
+    </p>    
+    
+
+    <div class="codeblock">
+        <small class="bg-black/30 absolute top-0 right-0 uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>Python</small>
+        <pre><code class="language-python hljs">def last_x_days(days = 90, time = time.time()):
+    """Returns last x days of unix timestamps in 8 hour increments. List is reverse chronological, with newest dates at front"""
+    seconds_in_8hr = 8*60*60
+    timestamps = []
+    start_timestamp = ((time-18000)//seconds_in_8hr)*seconds_in_8hr+18000 #gives closest 8hr interval timestamp, aligned with 5pm EST
+    for i in range(0,3*days): 
+         timestamps.append(str(start_timestamp-seconds_in_8hr*i))
+    return timestamps</code>
+    </pre>    
+    </div>
+
+
+    <p class="paragraph">
+    I won't spoil the fun (AKA, these methods might make money, so you'll have to find it yourself), but there is a significant problem with doing what I have done above. Nonetheless, this is a great starting point!
+    <br> <br> 
+    Now you should use these timestamps to call your price data! This can be done through the <a href="https://docs.cdp.coinbase.com/" class="inline-link" target="_blank" rel="noopener noreferrer" style="color: rgb(40, 86, 245)">Coinbase API</a>:
+
+    </p>
+
+    <div class="codeblock">
+        <small class="bg-black/30 absolute top-0 right-0 uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>Python</small>
+        <pre><code class="language-python hljs">def last_x_prices(days = 90, product_id = 'BTC-USD', granularity = 60):
+    """Returns last x days of price data, at the timestamps"""
+    timestamps = last_x_days(days)
+    prices = []
+    for i in timestamps:             
+        datetime_object_start = datetime.datetime.fromtimestamp(float(i)+4*60*60)
+        datetime_object_end = datetime.datetime.fromtimestamp(float(i)+4*60*60+120)
+        start = datetime_object_start.strftime('%Y-%m-%dT%H:%M:%S')
+        end = datetime_object_end.strftime('%Y-%m-%dT%H:%M:%S')
+        api_url = f" PLACE YOUR URL HERE "
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            data = response.json()
+            prices.append(data[0][1])
+        else:
+            print(f"Failed to fetch Bitcoin price data. Status code: {response.status_code}")
+            prices.append('None')
+    return prices</code>
+    </pre>    
+    </div>
+
+    <p class="paragraph">
+        You'll also need the live price data: 
+    </p>
+
+
+    <div class="codeblock">
+        <small class="bg-black/30 absolute top-0 right-0 uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>Python</small>
+        <pre><code class="language-python hljs">def current_price(product_id = 'BTC-USD', limit = 1, payload = ''):
+    # Create an SSL context that ignores certificate verification errors
+    context = ssl.create_default_context()
+    context.check_hostname = False
+    context.verify_mode = ssl.CERT_NONE
+
+    conn = http.client.HTTPSConnection("api.coinbase.com", context=context)
+    headers = {'Content-Type': 'application/json'}
+    conn.request("GET", f" PLACE YOUR REQUEST HERE ", payload, headers)
+    data = json.loads(conn.getresponse().read().decode("utf-8"))
+    return (float(data['best_ask'])+float(data['best_bid']))/2</code>
+    </pre>    
+    </div>
+    
+    <p class="paragraph">
+        Now that you have the data, start making your prices! I recommend you read up on implied and realized volatility, and specifics on how to calculate them. There is a really nicely written piece by Noelle Acheson from CoinDesk. Since you have already found all historical data, backtesting doesn't need to be done through Kalshi, but can be done simply via historical prices. All of my methods are empirical, and this is likely the best way to go given the pricing distribution isn't normal:
+    </p>
+
+    <img class="imageblock" src="/Graphs/BTC_logmov.png" alt="Histograph of price movements" >
+    
+
+
+    <p class="paragraph">
+        <br> 
+        My price function returns instantaneous results that use realized & implied volatility to look like:
+    </p>
+
+    <img class="imageblock" src="/Graphs/BTC_funcreturn.png" alt="Function Return Results" >
+
+    <p class="paragraph">
+    <br> <br>
+    This will price contracts within 4-5¢ of the KT prices. With variance and the possibility that they are priced better than me (this is literally their job), I don't view this edge as wide enough. Thanks for reading! 
+    <br> <br> <br> <br>
+    All graphs, text, and materials on this page are original. Please do not reproduce this media without permission.
+    <br> <br>
+    </p>
+    
+</body>
+</html>
