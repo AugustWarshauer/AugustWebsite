@@ -54,6 +54,7 @@
                 <form id="mySUB2" method="POST" action="https://script.google.com/macros/s/AKfycbzo5CCK1sHNb5wJR71S2oPra4vJnmbIRVszvBmYMggkgQXjWAlu4sJ1l-L4OYxFwQmMeg/exec" target="hiddenFrame" >
                 <textarea name="Message" type="text" placeholder="Say anything..." required></textarea>
                 <br>
+                <button id="Honeypot" style="display:none !important" tabindex="-1" autocomplete="false"> </button>         <!--Honeypot for bot fuckers-->
                 <button class="antiregular" type="submit" id="myBtn">SEND</button>
                 </form>
                 
@@ -68,6 +69,12 @@
                     document.getElementById("mySUB2").remove();
                     }, 500);
                   
+                });
+
+                const honey = document.getElementById("Honeypot");
+                honey.addEventListener("click", function() {
+                    document.getElementById("myBtn").remove();
+                    document.getElementById("mySUB2").remove();
                 });
                 
                 </script>
