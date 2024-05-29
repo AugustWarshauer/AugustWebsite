@@ -36,12 +36,11 @@
     </style>
 
 </head>
+
+
 <body style="background-color: black;">
 
-<div id="smallscreen" style=" font-size: 70px; color: white;">Please load on screen larger than 1000px wide!</div>
-
-<div class="curs"></div>
-
+<script src="/asciinema-player.min.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6XX4JKHYP"></script>
 <script>
@@ -52,9 +51,38 @@
   gtag('config', 'G-W6XX4JKHYP');
 </script>
 
+<div id="smallscreen" style=" font-size: 70px; color: white;">Please load on screen larger than 1000px wide!</div>
 
-  <div id="demo"></div>
-<script src="/asciinema-player.min.js"></script>
+
+<!-- 
+<script>
+bar = document.getElementById('loading');
+i=0;
+while (i<12){
+  setTimeout(inside, 800);
+  function inside(bar, i) {
+    bar.innerHTML = ('<div class="curs" style="left:'+2*i+'%;"></div>')*i
+  }
+  i+=1;
+}
+// THIS IS THE SHIT I DONT KNOW, IT WASNT LOADING PROPERLY (CLEAR COOKIES)
+// THIS IS THE SHIT I DONT KNOW, IT WASNT LOADING PROPERLY (CLEAR COOKIES)
+// THIS IS THE SHIT I DONT KNOW, IT WASNT LOADING PROPERLY (CLEAR COOKIES)
+
+
+
+</script>
+<div class="loading"><div class="curs"></div></div> -->
+
+
+
+
+
+
+
+<div id="demo"></div>
+
+
 
 <script>
 
@@ -66,9 +94,11 @@ AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
   autoPlay: true
 }); 
 </script>
-<script>
 
-// setTimeout(delayedScript, 10900);
+
+<!-- <script>
+
+setTimeout(delayedScript, 10900);
 function delayedScript(){
 const myDiv = document.querySelectorAll('.ap-terminal > span > span');
 console.log(myDiv);
@@ -105,7 +135,7 @@ myDiv.forEach(myDiv => {
           }})
         }
 
-</script>
+</script> -->
 
 </body>
 
