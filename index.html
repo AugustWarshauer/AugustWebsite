@@ -73,14 +73,13 @@ AsciinemaPlayer.create('/demo2.cast', document.getElementById('demo'), {
 
 }); 
 
-setTimeout(delayedPlayer,23900);
 function delayedPlayer() {
   // screen = document.getElementById('demo');
   // screen.innerHTML = ''
   AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
   theme: 'dracula',
   rows: 24,
-  startAt: 0,
+  startAt: 23.9,
   preload: true,
   autoPlay: true
 

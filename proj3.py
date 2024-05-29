@@ -50,3 +50,16 @@ with effect.terminal_output() as terminal:
 # with effect.terminal_output(end_symbol=" ") as terminal:
 #     for frame in effect:
         # terminal.print(frame)
+
+
+from time import sleep
+import sys
+import math
+
+for i in range(101):
+    sys.stdout.write('\r')
+    filled_length = math.floor(i / 5)
+    bar = '🟩' * filled_length + '⬜' * (20 - filled_length)
+    sys.stdout.write("[%s] %d%%" % (bar, i))
+    sys.stdout.flush()
+    sleep(0.001*i)
