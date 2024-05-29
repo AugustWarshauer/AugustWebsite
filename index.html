@@ -73,17 +73,30 @@ AsciinemaPlayer.create('/demo2.cast', document.getElementById('demo'), {
 
 }); 
 
+
+AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
+  theme: 'dracula',
+  rows: 24,
+  startAt: 0,
+  preload: true,
+  autoPlay: false,
+  idleTimeLimit: 0.2 // it should be 0.3, just doing this to speed up in backtesting
+
+}); 
+
+// setTimeout(delayedPlayer,23900);
 function delayedPlayer() {
   // screen = document.getElementById('demo');
   // screen.innerHTML = ''
   AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
   theme: 'dracula',
   rows: 24,
-  startAt: 23.9,
+  startAt: 0,
   preload: true,
   autoPlay: true
 
 }); 
+delayedPlayer();
 }
 
 </script>
