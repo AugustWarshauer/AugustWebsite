@@ -69,11 +69,11 @@ AsciinemaPlayer.create('/demo2.cast', document.getElementById('demo'), {
   startAt: 0,
   preload: true,
   autoPlay: true,
-  idleTimeLimit: 0.1 // it should be 0.3, just doing this to speed up in backtesting
+  idleTimeLimit: 0.2 // it should be 0.3, just doing this to speed up in backtesting
 
 }); 
 
-setTimeout(delayedPlayer,20900);
+setTimeout(delayedPlayer,23900);
 function delayedPlayer() {
   // screen = document.getElementById('demo');
   // screen.innerHTML = ''
@@ -92,7 +92,7 @@ function delayedPlayer() {
 
 <script>
 
-setTimeout(delayedScript, 38900);
+setTimeout(delayedScript, 34900);
 function delayedScript(){
 const myDiv = document.querySelectorAll('.ap-terminal > span > span');
 console.log(myDiv);
