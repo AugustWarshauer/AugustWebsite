@@ -610,48 +610,52 @@ span.ap-marker-container span.ap-marker-tooltip {
 span.ap-marker-container:hover span.ap-marker-tooltip {
   visibility: visible;
 }
-.ap-player .ap-overlay {
-  z-index: 10;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .ap-player .ap-overlay-start {
   cursor: pointer;
 }
 .ap-player .ap-overlay-start .ap-play-button {
-  font-size: 0px;
+  align-items: center;
+  appearance: none;
+  background-color: #cccccc;
+  border-radius: 4px;
+  border-width: 4px;
+  border-color: #cccccc;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display:inline-flex;
+  height: 1.33333em;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
   position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  color: white;
-  height: 80px;
-  max-height: 66%;
-  margin: auto;
+  left: 4%;
+  top: 0px;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s, transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Liberation Mono", "Courier New", monospace, bold;
 }
-.ap-player .ap-overlay-start .ap-play-button div {
-  height: 100%;
+
+#wowza {
+  display: none;
 }
-.ap-player .ap-overlay-start .ap-play-button div span {
-  height: 100%;
-  display: block;
+#wonk {
+  display:none;
 }
-.ap-player .ap-overlay-start .ap-play-button div span svg {
-  height: 100%;
-}
-.ap-player .ap-overlay-start .ap-play-button svg {
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.4));
-}
+
+
 .ap-player .ap-overlay-loading .ap-loader {
   width: 48px;
   height: 48px;
@@ -2178,7 +2182,7 @@ span.ap-marker-container:hover span.ap-marker-tooltip {
 }
 /* Based on Monokai from base16 collection - https://github.com/chriskempson/base16 */
 .asciinema-player-theme-monokai {
-  --term-color-foreground: #f8f8f2;
+  --term-color-foreground: #cccccc;
   --term-color-background: #272822;
   --term-color-0: #272822;
   --term-color-1: #f92672;
@@ -2266,12 +2270,7 @@ span.ap-marker-container:hover span.ap-marker-tooltip {
   --term-color-14: #93a1a1;
   --term-color-15: #fdf6e3;
 }
-.asciinema-player-theme-solarized-light .ap-overlay-start .ap-play-button svg .ap-play-btn-fill {
-  fill: var(--term-color-1);
-}
-.asciinema-player-theme-solarized-light .ap-overlay-start .ap-play-button svg .ap-play-btn-stroke {
-  stroke: var(--term-color-1);
-}
+
 /*
   Based on Tango: https://en.wikipedia.org/wiki/Tango_Desktop_Project
  */

@@ -84,62 +84,77 @@ AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
 
 }); 
 
-// setTimeout(delayedPlayer,23900);
+setTimeout(delayedPlayer,25000);
 function delayedPlayer() {
-  // screen = document.getElementById('demo');
-  // screen.innerHTML = ''
-  AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
-  theme: 'dracula',
-  rows: 24,
-  startAt: 0,
-  preload: true,
-  autoPlay: true
-
-}); 
-delayedPlayer();
+  button = document.getElementById('wowza');
+  button.style.display = "inline-flex";
+  button2 = document.getElementById('wonk');
+  button2.style.display = "inline-flex";
 }
+
+
+
+// setTimeout(delayedPlayer,23900);
+// function delayedPlayer() {
+//   // screen = document.getElementById('demo');
+//   // screen.innerHTML = ''
+//   AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
+//   theme: 'dracula',
+//   rows: 24,
+//   startAt: 0,
+//   preload: true,
+//   autoPlay: true
+
+// }); 
+// }
 
 </script>
 
 
 <script>
 
-setTimeout(delayedScript, 34900);
-function delayedScript(){
-const myDiv = document.querySelectorAll('.ap-terminal > span > span');
-console.log(myDiv);
-myDiv.forEach(myDiv => {
-        // Check if the inner HTML matches the condition
-        if (myDiv.innerHTML === 'https://augustwarshauer.com/main') {
-            // Modify the inner HTML
-            myDiv.innerHTML = '<a href="https://augustwarshauer.com/main" style="text-decoration: none; color: inherit;">https://augustwarshauer.com/main</a>';
-        
-            lerp = function(a, b, u) {
-              return (1 - u) * a + u * b;
-            };
+document.getElementById('wonk').addEventListener("click", beginColoring);
 
-            fade = function(element, property, start, end, duration) {
-              var interval = 10;
-              var steps = duration / interval;
-              var step_u = 1.0 / steps;
-              var u = 0.0;
-              var theInterval = setInterval(function() {
-                  if (u >= 1.0) {
-                    clearInterval(theInterval);
-                  }
-                  var r = Math.round(lerp(start.r, end.r, u));
-                  var g = Math.round(lerp(start.g, end.g, u));
-                  var b = Math.round(lerp(start.b, end.b, u));
-                  var colorname = 'rgb(' + r + ',' + g + ',' + b + ')';
-                  element.style.setProperty(property, colorname);
-                  u += step_u;
-              }, interval);
-              
-            };
-            fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  232, g:42, b:42}, 3000);
+function beginColoring() {
+  setTimeout(delayedScript, 11000);
+  function delayedScript(){
+  const myDiv = document.querySelectorAll('.ap-terminal > span > span');
+  console.log(myDiv);
+  myDiv.forEach(myDiv => {
+          // Check if the inner HTML matches the condition
+          if (myDiv.innerHTML === 'https://augustwarshauer.com/main') {
+              // Modify the inner HTML
+              myDiv.innerHTML = '<a href="https://augustwarshauer.com/main" style="text-decoration: none; color: inherit;">https://augustwarshauer.com/main</a>';
+          
+              lerp = function(a, b, u) {
+                return (1 - u) * a + u * b;
+              };
 
-          }})
-        }
+              fade = function(element, property, start, end, duration) {
+                var interval = 10;
+                var steps = duration / interval;
+                var step_u = 1.0 / steps;
+                var u = 0.0;
+                var theInterval = setInterval(function() {
+                    if (u >= 1.0) {
+                      clearInterval(theInterval);
+                    }
+                    var r = Math.round(lerp(start.r, end.r, u));
+                    var g = Math.round(lerp(start.g, end.g, u));
+                    var b = Math.round(lerp(start.b, end.b, u));
+                    var colorname = 'rgb(' + r + ',' + g + ',' + b + ')';
+                    element.style.setProperty(property, colorname);
+                    u += step_u;
+                }, interval);
+                
+              };
+              fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  232, g:42, b:42}, 3000);
+
+            }})
+          }
+  
+}
+
 
 </script>
 
