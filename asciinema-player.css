@@ -50,7 +50,7 @@ div.ap-wrapper div.ap-player {
   display: inline-block;
   padding: 0px;
   padding-left: 3%;
-  padding-top:2%;
+  padding-top:0%;
   position: relative;
   box-sizing: content-box;
   overflow: hidden;
@@ -2157,7 +2157,7 @@ span.ap-marker-container:hover span.ap-marker-tooltip {
   Based on Dracula: https://draculatheme.com
  */
 .asciinema-player-theme-dracula {
-  --term-color-foreground: #f8f8f2;
+  --term-color-foreground: #cccccc;
   --term-color-background: #000000;
   --term-color-0: #21222c;
   --term-color-1: #ff5555;

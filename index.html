@@ -54,36 +54,30 @@
 <div id="smallscreen" style=" font-size: 70px; color: white;">Please load on screen larger than 1000px wide!</div>
 
 
-<!-- 
-<script>
-bar = document.getElementById('loading');
-i=0;
-while (i<12){
-  setTimeout(inside, 800);
-  function inside(bar, i) {
-    bar.innerHTML = ('<div class="curs" style="left:'+2*i+'%;"></div>')*i
-  }
-  i+=1;
-}
-// THIS IS THE SHIT I DONT KNOW, IT WASNT LOADING PROPERLY (CLEAR COOKIES)
-// THIS IS THE SHIT I DONT KNOW, IT WASNT LOADING PROPERLY (CLEAR COOKIES)
-// THIS IS THE SHIT I DONT KNOW, IT WASNT LOADING PROPERLY (CLEAR COOKIES)
-
-
-
-</script>
-<div class="loading"><div class="curs"></div></div> -->
 
 
 
 
+<div id="demo" style="padding-top: 2%;"></div>
 
-
-
-<div id="demo"></div>
 
 <script>
-AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
+
+AsciinemaPlayer.create('/demo2.cast', document.getElementById('demo'), {
+  theme: 'dracula',
+  rows: 7,
+  startAt: 0,
+  preload: true,
+  autoPlay: true,
+  idleTimeLimit: 0.1 // it should be 0.3, just doing this to speed up in backtesting
+
+}); 
+
+setTimeout(delayedPlayer,20900);
+function delayedPlayer() {
+  // screen = document.getElementById('demo');
+  // screen.innerHTML = ''
+  AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
   theme: 'dracula',
   rows: 24,
   startAt: 0,
@@ -91,12 +85,14 @@ AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
   autoPlay: true
 
 }); 
+}
+
 </script>
 
 
-<!-- <script>
+<script>
 
-setTimeout(delayedScript, 10900);
+setTimeout(delayedScript, 38900);
 function delayedScript(){
 const myDiv = document.querySelectorAll('.ap-terminal > span > span');
 console.log(myDiv);
@@ -133,7 +129,7 @@ myDiv.forEach(myDiv => {
           }})
         }
 
-</script> -->
+</script>
 
 </body>
 
