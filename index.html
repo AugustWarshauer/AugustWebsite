@@ -82,16 +82,14 @@ while (i<12){
 
 <div id="demo"></div>
 
-
-
 <script>
-
-
-
 AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
   theme: 'dracula',
   rows: 24,
+  startAt: 0,
+  preload: true,
   autoPlay: true
+
 }); 
 </script>
 
