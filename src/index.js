@@ -1,7 +1,7 @@
 // import profilesABI from "./AugustsProfiles_abi.json";
-import profilesABI from './AugustsProfiles_abi.json' assert { type: "json" };
-import coinABI from './AugustCoin_abi.json' assert { type: "json" };
-import faucetABI from './AugustFaucet_abi.json' assert { type: "json" };
+import profilesABI from './AugustsProfiles_abi.json' with { type: "json" };
+import coinABI from './AugustCoin_abi.json' with { type: "json" };
+import faucetABI from './AugustFaucet_abi.json' with { type: "json" };
 
 const profilesAddress = "0x439f3d1A16698aCD2BD74e01CBe992c9D0CCf1F5";
 const coinAddress = "0x2e992BF3732E71A83E44251f9B0dE80553A73632";
