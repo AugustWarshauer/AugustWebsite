@@ -7,10 +7,15 @@ const profilesAddress = "0x439f3d1A16698aCD2BD74e01CBe992c9D0CCf1F5";
 const coinAddress = "0x2e992BF3732E71A83E44251f9B0dE80553A73632";
 const faucetAddress = "0x24AcE8d1f490E05C5A66d6186bAfe051CCb3eEdc";
 
+console.log(1)
+
 let web3 = new Web3(window.ethereum);
 let profiles_contract = new web3.eth.Contract(profilesABI, profilesAddress);
 let coin_contract = new web3.eth.Contract(coinABI, coinAddress);
 let faucet_contract = new web3.eth.Contract(faucetABI, faucetAddress);
+
+console.log(11)
+
 
 async function createLeaderboard() {
   const fullprofiles = await profiles_contract.methods.getAllProfiles().call();
@@ -66,6 +71,8 @@ async function createLeaderboard() {
   
 }
 
+console.log(111)
+
 
 
 
@@ -114,6 +121,8 @@ document.getElementById("MetamaskBtn").addEventListener("click", async (e) => {
     
 });
 
+console.log(1111)
+
 
 document.getElementById("ProfileBtn").addEventListener("click", async (e) => {
   e.preventDefault();
@@ -161,6 +170,7 @@ async function staticProfileCheck() {
   }
 }
 
+console.log(2)
 
 
 document.getElementById("FaucetBtn").addEventListener("click", async (e) => {
@@ -190,6 +200,8 @@ document.getElementById("FaucetBtn").addEventListener("click", async (e) => {
   }
 });
 
+console.log(4)
+
 
 var coll = document.getElementsByClassName("collapsible");
 for (let i = 0; i < coll.length; i++) {
@@ -204,8 +216,12 @@ for (let i = 0; i < coll.length; i++) {
   });
 }
 
+console.log(5)
+
 
 createLeaderboard();
+
+console.log(6)
 
 connectWallet();
 
