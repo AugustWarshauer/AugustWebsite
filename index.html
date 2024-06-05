@@ -75,14 +75,14 @@ AsciinemaPlayer.create('/demo2.cast', document.getElementById('demo'), {
 
 
 AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'), {
-  theme: 'dracula',
-  rows: 24,
-  startAt: 0,
-  preload: true,
-  autoPlay: false,
-  idleTimeLimit: 0.2 // it should be 0.3, just doing this to speed up in backtesting
+    theme: 'dracula',
+    rows: 24,
+    startAt: 0,
+    preload: true,
+    autoPlay: false,
+    idleTimeLimit: 0.2 // it should be 0.3, just doing this to speed up in backtesting
 
-}); 
+  }); 
 
 
 
@@ -95,7 +95,7 @@ function clickEvent() {
   btn2.click();
 }  
 
-document.getElementById('wonk').addEventListener("click", beginColoring);
+// document.getElementById('wonk').addEventListener("click", beginColoring);
 
 
 lerp = function(a, b, u) {
@@ -121,29 +121,33 @@ fade = function(element, property, start, end, duration) {
 };
 
 
-function beginColoring() {
-  setTimeout(delayedScript, 10000);
-  function delayedScript(){
-  const myDiv = document.querySelectorAll('.ap-terminal > span > span');
-  myDiv.forEach(myDiv => {    
-    if (myDiv.innerHTML === 'https://augustwarshauer.com/main') {
-      myDiv.innerHTML = '<a href="https://augustwarshauer.com/main" style="text-decoration: none; color: inherit;">https://augustwarshauer.com/main</a>';
-      fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  232, g:42, b:42}, 3000);
-      
-    }
 
-    if (myDiv.innerHTML === 'https://www.linkedin.com/in/augustwarshauer/') {
-      myDiv.innerHTML = '<a href="https://www.linkedin.com/in/augustwarshauer/" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/augustwarshauer/</a>';
-      fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  72, g:104, b:156}, 3000);
-    }
+// function beginColoring() {
+    // setTimeout(delayedScript, 10000)
+    function delayedScript(){
+      const myDiv = document.querySelectorAll('.ap-terminal > span > span');
+      myDiv.forEach(myDiv => {    
+        if (myDiv.innerHTML === 'https://augustwarshauer.com/main') {
+          myDiv.innerHTML = '<a href="https://augustwarshauer.com/main" style="text-decoration: none; color: inherit;">https://augustwarshauer.com/main</a>';
+          fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  232, g:42, b:42}, 3000);
+        }
 
-    if (myDiv.innerHTML === 'https://github.com/AugustWarshauer') {
-      myDiv.innerHTML = '<a href="https://github.com/AugustWarshauer" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">https://github.com/AugustWarshauer</a>';
-      fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  72, g:104, b:156}, 3000);
+        if (myDiv.innerHTML === 'https://www.linkedin.com/in/augustwarshauer/') {
+          myDiv.innerHTML = '<a href="https://www.linkedin.com/in/augustwarshauer/" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/augustwarshauer/</a>';
+          fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  72, g:104, b:156}, 3000);
+        }
+
+        if (myDiv.innerHTML === 'https://github.com/AugustWarshauer') {
+          myDiv.innerHTML = '<a href="https://github.com/AugustWarshauer" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">https://github.com/AugustWarshauer</a>';
+          fade(myDiv, 'color', {r:204, g:  200, b:  200}, {r:  72, g:104, b:156}, 3000);
+        }
+
+        }
+      )
     }
-    })
-  }
-}
+  // }
+
+setInterval(delayedScript, 100)
 
 
 </script>
