@@ -18,7 +18,7 @@ const faucetAddress = "0x24AcE8d1f490E05C5A66d6186bAfe051CCb3eEdc";
 let web3 = new Web3(window.ethereum);
 let profiles_contract = new web3.eth.Contract(profilesABI, profilesAddress);
 let coin_contract = new web3.eth.Contract(coinABI, coinAddress);
-let faucet_contract = new web3.eth.Contract(faucetABI = faucetABI, faucetAddress);
+let faucet_contract = new web3.eth.Contract(faucetABI, faucetAddress);
 
 
 
@@ -28,7 +28,7 @@ async function createLeaderboard() {
   const walletNames = [...fullprofiles[1]]; 
   const walletBalances = [];
 
-
+  
   for (let i=0; i< walletIDs.length; i++) {
     let addy = walletIDs[i];
     try {
