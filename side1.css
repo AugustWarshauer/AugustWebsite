@@ -42,6 +42,14 @@
     color: rgb(215, 212, 37); 
     background-color: rgba(204, 185, 44, 0.3); 
 }
+.purple {
+    color: rgb(106, 130, 251);
+    background-color:rgb(32, 37, 64);
+}
+.orange {
+    color: rgb(245, 195, 158);
+    background-color: rgb(84, 50, 24);
+}
 .bitcoin {
     color: #f7931a;
 }
@@ -76,6 +84,20 @@
     color: white; 
     border-radius: 10px;
     border: 2px solid #f7931a;
+    text-align: center;
+}
+.headd3 {
+    position: relative;
+    margin-left: 20%;
+    margin-right:20%;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: white; 
+    border-radius: 10px;
+    border: 2px solid #919191;
     text-align: center;
 }
 .author {
@@ -249,6 +271,12 @@ div.codeblock span.copied-message {
     color: white;
     z-index: 1;
 }
+.head-author-color3 {
+    background-color: #373737;
+    color: white;
+    z-index: 1;
+}
+
 .rounded-bl-md {
     border-bottom-left-radius: 10px;
     border-top-right-radius: 9px;

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUGUST WARSHAUER: Solidity Smart Contracts, Web3, and ERC20</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="side1.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/ir-black.min.css">
+
+
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6XX4JKHYP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W6XX4JKHYP');
+</script>
+
+
+<body style="background-color: black;">
+    <div class="box-container" style="color: white; opacity: 0.5;"></div>
+    <div class="jumbotron text-center" style="background-size: cover"id="overlay">
+        <h1><a class="do-not-disturb" href="https://www.augustwarshauer.com/main" style="text-decoration: none;     color: white;
+            font-family: Times New Roman, Times, serif; font-size: 60px;">AUGUST WARSHAUER</a></h1>
+    </div>
+    <!-- <div class="do-not-disturb" ><a class="do-not-disturb" id="overlay2">A product of chance</a></div> -->
+
+    <script src="app4.js"></script>
+    <script src="side1.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    
+
+    <div class="headd3">
+        <small class="head-author-color3 absolute right-h uppercase font-bold text-xs rounded-bl-md px-2 py-1"><span class="sr-only">Language:</span>June 5, 2024</small>
+        <small class="head-author-color3 absolute left-h uppercase font-bold text-xs rounded-bl-md2 px-2 py-1"><span class="sr-only">Language:</span>August Warshauer</small>
+        <h1 class="author" style="margin-top: 20px;">Solidity Smart Contracts, Web3, and ERC20</h1>
+    </div>
+    <!--
+    <div class="footer">
+        <p>This original material is the property of August Warshauer</p>
+    </div>
+    -->
+
+
+    <p class="paragraph"><br>  
+    Short and sweet this time. The ERC20 token page is <a href="https://augustwarshauer.com/AugustCoin" target="_blank" rel="noopener noreferrer" class="inline-link" style="color: #ff3b3f">here</a> and the code repository is <a href="https://github.com/AugustWarshauer/AugustCoin" target="_blank" rel="noopener noreferrer" class="inline-link" style="color: #ff3b3f">here</a>
+
+    <br><br>
+    I learned how to write Solidity smart contracts! This allows me to develop dApps, among other things. I thought, as my first Solidity project, it might make sense to create an ERC20 token, as it's a staple of the Ethereum blockchain. Well, making the token is the easy part (I encourage you to do so yourself - youtube guides this in just 30 minutes!) 
+    <br> <br>
+    The tricky part comes in <em>understanding</em> the contract, and being able to write other contracts to interact with your token. My <code class="inline-code purple">Profile</code> contract forces users to have registered profiles before trading my token. This is done by overriding the fundamental <code class="inline-code yellow">_update</code> function in ERC20, and requiring registration through an interface with my <code class="inline-code purple">Profile</code> contract. In essence it's that simple! The <code class="inline-code orange">Faucet</code> contract is standard, and includes an adjustable 24 hour wait period between uses. 
+    <br> <br>
+    To connect these contracts to a website similar to what you are viewing now requires <a href="https://web3js.org/" target="_blank" rel="noopener noreferrer" class="inline-link" style="color: rgb(209, 50, 10)">Web3js</a> and <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer" class="inline-link" style="color: rgb(224,135,56)">MetaMask</a>. There's a lot of work around error handeling here. One particularily stubbern bug to find was learning MetaMask's provider defaults to the mainnet, and since my contract is deployed on Sepolia (for now), it fails and returns a host of poorly documented errors. Anyway, the repo with my Solidity and Web3/Web2 js code is linked above if you want to check it out in more detail.
+
+    </p>    
+    
+
+
+
+    <p class="paragraph">
+    <br> <br> <br> <br>
+    All text and materials on this page are original. Please do not reproduce this media without permission.
+    <br> <br>
+    </p>
+    
+</body>
+</html>
