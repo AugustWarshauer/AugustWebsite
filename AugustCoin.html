@@ -26,12 +26,12 @@
 
     <div class="container">
       <!-- -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; -->
-      <div id="connectMessage" style="color: black;">Please connect to Metamask</div>
+      <div id="connectMessage" style="color: black;">Please connect to MetaMask</div>
       <h1><a href="https://sepolia.etherscan.io/token/0x2e992bf3732e71a83e44251f9b0de80553a73632#code" style="color: black; text-decoration: none;">AugustCoin [ACN]</a></h1>
 
 
       <div class="buttonContainer">
-        <button id="MetamaskBtn" type="submit">Metamask</button>
+        <button id="MetamaskBtn" type="submit">MetaMask</button>
         <button id="ProfileBtn" type="submit">Add Profile</button>
         <button id="FaucetBtn" type="submit">Faucet</button>
       </div>
@@ -43,7 +43,7 @@
 
         <button type="button" class="collapsible">24hour Faucet</button>
         <div class="content">
-          <p>You must wait 24 hours before the faucet will aprove more free AugustCoin! I know, so sad... <br> <br>Also, if the Metamask faucet transaction warns you "This transaction is likely to fail" and costs a ton of Sepolia, it means you haven't waited long enough yet (it will fail!)</p>
+          <p>You must wait 24 hours before the faucet will aprove more free AugustCoin! I know, so sad... <br> <br>Also, if the MetaMask faucet transaction warns you "This transaction is likely to fail" and costs a ton of Sepolia, it means you haven't waited long enough yet (it will fail!)</p>
         </div>
   
         <button type="button" class="collapsible">Using Sepolia gas</button>
@@ -57,12 +57,18 @@
 
 
       <h3>Leaderboard</h3>
-      <div id="leaderboard"></div>
+      <div id="leaderboard">
+        <br>
+        ⚠️ Leaderboard hasn't loaded. Make sure you have connected MetaMask. Then, switch your network from mainnet to Sepolia (hit "Show test networks" to find) and reload the page. You can also hit the button below to prompt the network switch. ⚠️
+        <br>
+        <button id="changeChainBtn" type="submit">Change Ethereum Chain</button>
+
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script>
     <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
-    
+
     <script src="src/index.js" type="module"></script>
 
   </body>

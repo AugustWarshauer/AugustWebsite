@@ -17,21 +17,18 @@ const faucetAddress = "0x24AcE8d1f490E05C5A66d6186bAfe051CCb3eEdc";
 
 
 let web3 = new Web3(window.ethereum);
+
 let profiles_contract = new web3.eth.Contract(profilesABI, profilesAddress);
 let coin_contract = new web3.eth.Contract(coinABI, coinAddress);
 let faucet_contract = new web3.eth.Contract(faucetABI, faucetAddress);
 
 
 async function createLeaderboard() {
-  console.log('hi');
   const fullprofiles = await profiles_contract.methods.getAllProfiles().call();
-  console.log(fullprofiles[0]);
   const walletIDs = [...fullprofiles[0]]; 
   const walletNames = [...fullprofiles[1]]; 
   const walletBalances = [];
 
-  console.log(walletIDs);
-  console.log(walletNames);
 
   for (let i=0; i< walletIDs.length; i++) {
     let addy = walletIDs[i];
@@ -67,7 +64,7 @@ async function createLeaderboard() {
 
   }
   const leaderboard = document.getElementById("leaderboard");
-
+  leaderboard.innerHTML = "";
   for (let i=0; i< sortedwalletBalances.length; i++) {
 
     leaderboard.innerHTML += `<div class="roww">
@@ -92,7 +89,7 @@ async function connectWallet() {
           console.log("Please connect to MetaMask.");    
           document.getElementById("connectMessage").innerHTML =
           "Please connect to Metamask";
-          document.getElementById("MetamaskBtn").innerHTML = "Metamask";
+          document.getElementById("MetamaskBtn").innerHTML = "MetaMask";
         } else {
           console.error(err);
         }
@@ -100,7 +97,7 @@ async function connectWallet() {
     if (accounts[0]) {
       console.log("We have an account");
       document.getElementById("connectMessage").innerHTML =
-      "Metamask connected";
+      "MetaMask connected";
       document.getElementById("MetamaskBtn").innerHTML = "Connected";
       staticProfileCheck();
     }
@@ -120,7 +117,7 @@ document.getElementById("MetamaskBtn").addEventListener("click", async (e) => {
   try {
     if (typeof accounts == 'undefined'){await connectWallet();} else{}
   } catch (error) {
-    console.error("Error connecting to Metamask", error);
+    console.error("Error connecting to MetaMask", error);
   } finally {
     tweetSubmitButton.disabled = false;
   }
@@ -131,7 +128,7 @@ document.getElementById("MetamaskBtn").addEventListener("click", async (e) => {
 document.getElementById("ProfileBtn").addEventListener("click", async (e) => {
   e.preventDefault();
   const accounts = await web3.eth.getAccounts();
-  if (accounts.length == 0){alert('Must connect Metamask first.'); await connectWallet();} else{
+  if (accounts.length == 0){alert('Must connect MetaMask first.'); await connectWallet();} else{
   const ProfileButton = document.getElementById("ProfileBtn");
   ProfileButton.innerHTML = '<div class="spinner">🥺🥺🥺</div>';
   ProfileButton.disabled = true;
@@ -174,13 +171,31 @@ async function staticProfileCheck() {
   }
 }
 
+async function changeChain() {
+  try {
+    await web3.enable();
+
+    const chainId = await web3.request({ method: 'eth_chainId' });
+    if (chainId !== '0xAA36A7') {
+        await web3.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0xAA36A7' }] 
+        });
+    web3.on("chainChanged", (chainId) => window.location.reload());
+    }
+} catch (error) {
+    console.error('User denied account access or network switch');
+}
+}
+
+
 
 
 document.getElementById("FaucetBtn").addEventListener("click", async (e) => {
   e.preventDefault();
   const accounts = await web3.eth.getAccounts();
   if (accounts.length == 0) {
-    alert('Must connect Metamask first.'); await connectWallet();
+    alert('Must connect MetaMask first.'); await connectWallet();
   } else {
     if (await profiles_contract.methods.findUserIndex(accounts[0]).call() == -1) {
       alert('Must create profile first.')
@@ -205,6 +220,14 @@ document.getElementById("FaucetBtn").addEventListener("click", async (e) => {
 
 
 
+document.getElementById("changeChainBtn").addEventListener("click", async (e) => {
+  changeChain();
+  createLeaderboard();
+})
+
+
+
+
 var coll = document.getElementsByClassName("collapsible");
 for (let i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
@@ -219,11 +242,28 @@ for (let i = 0; i < coll.length; i++) {
 }
 
 
+window.addEventListener('load', async () => {
+  if (typeof window.ethereum !== 'undefined') {
+      window.web3 = new Web3(window.ethereum);
+      try {
+          // Request account access if needed
+          await window.ethereum.enable();
 
-
-
-connectWallet();
-
-
-createLeaderboard();
+          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+          if (chainId !== '0xAA36A7') {
+              await window.ethereum.request({
+                  method: 'wallet_switchEthereumChain',
+                  params: [{ chainId: '0xAA36A7' }] // Sepolia chain ID
+              });
+          window.ethereum.on("chainChanged", (chainId) => window.location.reload());
+          }
+      } catch (error) {
+          console.error('User denied account access or network switch');
+      }
+  } else {
+      console.error('MetaMask not detected!');
+  }
+  connectWallet();
+  createLeaderboard();
+});
 
