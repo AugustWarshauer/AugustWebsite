@@ -1,31 +1,18 @@
-<!DOCTYPE html>
-<html lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+  <!DOCTYPE html>
+<html lang="en">
 <head>
-    <base target="_top">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUGUST WARSHAUER</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Latest compiled and minified CSS 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">   
-    -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+  <meta charset="UTF-8">
+  <title>August Warshauer</title>
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <style>
-        @media screen and (max-width: 1000px) {
-        div {
-            display: none;
-        }
-        #smallscreen {
-            display: block;
-        }
-        }
-    </style>
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js'></script> -->
+  <!-- Include GSAP from CDN -->
+  <link rel="stylesheet" href="wompwomp.css" />
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 
 </head>
+<body>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6XX4JKHYP"></script>
@@ -37,143 +24,197 @@
   gtag('config', 'G-W6XX4JKHYP');
 </script>
 
-<body style="background-color: black;">
 
-    <div id="smallscreen">Please load on screen larger than 1000px wide!</div>
-    <div class="do-not-disturb regular" style="position: absolute; z-index: 4; margin-left: 83%;">JOHN CONWAY'S GAME OF LIFE</div>
 
-    <div class="container" style="z-index: 2; position: absolute; top: 105px;
-    left: 50%;
-    transform: translate(-50%);">
+<div>
+    <div id="animation-container"></div>
 
-        <div class="row" >
-          <div class="col-sm regular">
-            <div class="regular">
-                <div id="leftcol">
-                <iframe id="hiddenFrame" name="hiddenFrame" style="display: none;"></iframe>
-                <form id="mySUB2" method="POST" action="https://script.google.com/macros/s/AKfycbzo5CCK1sHNb5wJR71S2oPra4vJnmbIRVszvBmYMggkgQXjWAlu4sJ1l-L4OYxFwQmMeg/exec" target="hiddenFrame" >
-                <textarea name="Message" type="text" placeholder="Say anything..." required></textarea>
-                <br>
-                <button id="Honeypot" style="display:none !important" tabindex="-1" autocomplete="false"> </button>         <!--Honeypot for bot fuckers-->
-                <button class="antiregular" type="submit" id="myBtn">SEND</button>
-                </form>
-                
-                <div class="submissionMessage" id="mySUB"></div>
-                
-                <script>
-                const element = document.getElementById("myBtn");
-                element.addEventListener("click", function() {
-                  setTimeout(function (){
-                    document.getElementById("mySUB").innerHTML =  "SUBMITTED";
-                    document.getElementById("leftcol").innerHTML += '<div id="fillME"></div>';
-                    document.getElementById("mySUB2").remove();
-                    }, 500);
-                  
-                });
+<div class="m1">
+    <div class="marquee marquee2">
+        <div class="marquee__group marquee__group2 target">
+            <span>AUGUST WARSHAUER</span>
+            <span>AUGUST WARSHAUER</span>
+            <span>AUGUST WARSHAUER</span>
+        </div>
+      <div class="marquee__group marquee__group2 target" aria-hidden="true">
+            <span>AUGUST WARSHAUER</span>
+            <span>AUGUST WARSHAUER</span>
+            <span>AUGUST WARSHAUER</span>
+        </div>
+    </div>
+</div>
 
-                const honey = document.getElementById("Honeypot");
-                honey.addEventListener("click", function() {
-                    document.getElementById("myBtn").remove();
-                    document.getElementById("mySUB2").remove();
-                });
-                
-                </script>
-                </div>
-            </div>
-          </div>
+
+<div class="m2">
+    <div class="marquee">
+        <div class="marquee__group target">
+        <span>Welcome! This is made as a lighthearted personal repository. A little about me: • <a href="https://www.uncpoker.com/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: none;">poker</a> enthusiast • Chess player • Chocolate addict • Dreamer • Eventual pickleball pro • Defeated weatherman •</span>
+        <span>Welcome! This is made as a lighthearted personal repository. A little about me: • <a href="https://www.uncpoker.com/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: none;">poker</a> enthusiast • Chess player • Chocolate addict • Dreamer • Eventual pickleball pro • Defeated weatherman •</span>
+        <span>Welcome! This is made as a lighthearted personal repository. A little about me: • <a href="https://www.uncpoker.com/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: none;">poker</a> enthusiast • Chess player • Chocolate addict • Dreamer • Eventual pickleball pro • Defeated weatherman •</span>
+
           
-          <div class="col-sm regular"  style="padding-top: 25px;">
-            <div id="midcol">
-            <p class="regular" style="padding-top: 10px; line-height: 95%; padding-right: 10px;">
-                Welcome! <br> <br> 
-                This is made as a lighthearted personal repository <br> <br>
-                A little about me: 
-                <ul>
-                    <li> <a style="text-decoration: none; font-family: 'Times New Roman', Times, serif;" href="https://www.uncpoker.com/">Poker</a> enthusiast</li>
-                    <li>Chess player</li>
-                    <li>Chocolate addict</li>
-                    <li>Dreamer</li>
-                    <li>Eventual pickleball pro</li>
-                    <li>Defeated weatherman (don't ask)</li>
+        </div>
+      <div class="marquee__group target" aria-hidden="true">
+        <span>Welcome! This is made as a lighthearted personal repository. A little about me: • <a href="https://www.uncpoker.com/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: none;">poker</a> enthusiast • Chess player • Chocolate addict • Dreamer • Eventual pickleball pro • Defeated weatherman •</span>
+        <span>Welcome! This is made as a lighthearted personal repository. A little about me: • <a href="https://www.uncpoker.com/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: none;">poker</a> enthusiast • Chess player • Chocolate addict • Dreamer • Eventual pickleball pro • Defeated weatherman •</span>
+        <span>Welcome! This is made as a lighthearted personal repository. A little about me: • <a href="https://www.uncpoker.com/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: none;">poker</a> enthusiast • Chess player • Chocolate addict • Dreamer • Eventual pickleball pro • Defeated weatherman •</span>
+          
+        </div>
+    </div>
+</div>
+ 
+    
+    
+    
 
-                  </ul>  
+    <div class="house">
+        <div class="support">
+          <div class="staircase">
+            <div class="stairs">
+            
                 
 
+              <div class="stair">
+                <span class="panel">
+                    <a href="" style="color: white; text-decoration: none;">
+                    <span class="pdate"></span>
+                    <span style="position: absolute"></span> 
+                    </a>
+                </span>
+                <span class="panel  ">
+                    <a href="project4.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">june 5<br> 2024 </span>
+                    <span class="target" style="position: absolute">Solidity. Web3. ERC20</span> 
+                    </a>
+                </span>
+              </div>
 
-            </p>
 
-          </div>
-            
+              <div class="stair">
+                <span class="panel  ">
+                    <a href="project4.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">june 5 <br> 2024 </span>
+                    <span class="target" style="position: absolute">Solidity. Web3. ERC20</span> 
+                    </a>
+                </span>
+                <span class="panel  ">
+                    <a href="AugustCoin.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">june 4 <br> 2024 </span>
+                    <span class="target" style="position: absolute">AugustCoin</span> 
+                    </a>
+                </span>
+              </div>
 
-          </div>
-          <div class="col-sm regular" style="text-align: center; padding-top: 25px;" id="rightcol">
-            <div id="stupid">
-            <iframe style="border-radius:12px;" src="https://open.spotify.com/embed/playlist/4jpqozRhxObHLPiGVr601T?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-        </div>
-        </div>
+              <div class="stair">
+                <span class="panel  ">
+                    <a href="AugustCoin.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">june 4 <br> 2024 </span>
+                    <span class="target" style="position: absolute">AugustCoin</span> 
+                    </a>
+                </span>
+                <span class="panel  ">
+                    <a href="https://www.augustwarshauer.com" style="color: white; text-decoration: none;">
+                    <span class="pdate target">may 28 <br> 2024 </span>
+                    <span class="target" style="position: absolute">New Redirect Page</span> 
+                    </a>
+                </span>
+              </div>
 
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-sm">
-                <div id="leftcol">
-                   
-                </div>
+              <div class="stair">
+                <span class="panel  ">
+                    <a href="https://www.augustwarshauer.com" style="color: white; text-decoration: none;">
+                    <span class="pdate target">may 28 <br> 2024 </span>
+                    <span class="target" style="position: absolute">New Redirect Page</span> 
+                    </a>
+                </span>
+                <span class="panel  ">
+                    <a href="project2.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">may 21 <br> 2024 </span>
+                    <span class="target" style="position: absolute">Bitcoin Daily Pricing</span> 
+                    </a>
+                </span>
+              </div>
+              
+
+              <div class="stair  ">
+                <span class="panel">
+                    <a href="project2.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">may 21 <br> 2024 </span>
+                    <span class="target" style="position: absolute">Bitcoin Daily Pricing</span> 
+                    </a>
+                </span>
+                <span class="panel  ">
+                    <a href="project1.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">may 7 <br> 2024 </span>
+                    <span class="target" style="position: absolute">Kalshi Spread Analysis</span> 
+                    </a>
+                </span>
+              </div>
+              
+
+              <div class="stair  ">
+                <span class="panel">
+                    <a href="project1.html" style="color: white; text-decoration: none;">
+                    <span class="pdate target">may 7 <br> 2024 </span>
+                    <span class="target" style="position: absolute">Kalshi Spread Analysis</span> 
+                    </a>
+                </span>
+                <span class="panel">
+                    <a href="" style="color: white; text-decoration: none;">
+                    <span class="pdate"></span>
+                    <span style="position: absolute"></span> 
+                    </a>
+                </span>
+              </div>
+
             </div>
-            <div class="col-sm regular">
-                <div id="midcol" style="margin-top: 25px;"> 
-                    <p class="regular" style="padding-top: 10px; line-height: 95%; padding-right: 10px;">
-                        Projects: <br>     
-                        <p class="regular" style="margin: 0; padding: 0;">
-                            <a href="project4.html" style="text-decoration: none; font-family: 'Times New Roman', Times, serif;margin: 0; padding: 0;">Solidity Contracts, Web3, ERC20</a> <em class="regular" style="font-size: 10pt;margin: 0; padding: 0;">june 5, 2024</em>                  
-                            <br>
-                            <a href="AugustCoin.html" style="text-decoration: none; font-family: 'Times New Roman', Times, serif;margin: 0; padding: 0;">AugustCoin</a> <em class="regular" style="font-size: 10pt;margin: 0; padding: 0;">june 4, 2024</em>                  
-                            <br>
-                            <a href="https://www.augustwarshauer.com" style="text-decoration: none; font-family: 'Times New Roman', Times, serif;margin: 0; padding: 0;">New Redirect Page</a> <em class="regular" style="font-size: 10pt;margin: 0; padding: 0;">may 28, 2024</em>                  
-                            <br>
-                            <a href="project2.html" style="text-decoration: none; font-family: 'Times New Roman', Times, serif; margin: 0; padding: 0;">Bitcoin Daily Pricing</a> <em class="regular" style="font-size: 10pt; margin: 0; padding: 0;">may 21, 2024</em>     
-                            <br>             
-                            <a href="project1.html" style="text-decoration: none; font-family: 'Times New Roman', Times, serif;margin: 0; padding: 0;">Kalshi Spread Analysis</a> <em class="regular" style="font-size: 10pt;margin: 0; padding: 0;">may 7, 2024</em>                                              
-                        </p>
-                        
-                        
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm regular" style="text-align: center; padding-top: 25px;" id="rightcol">
-                <div id="stupid">
-                <div style="border-radius:12px; width: 302px; height: 352px; background-color: black;" ></div>
-            </div>
             </div>
         </div>
 
 
+
+        <div class="beginDecode lt1 target codedText">strawberry Chocolate strawberry</div>
+        <div class="lt2 target codedText fromRight">strawberry Chocolate strawberry</div>
+        <div class="lt1 target codedText">strawberry Chocolate strawberry</div>
+        <div class="lt2 target codedText fromRight">strawberry Chocolate strawberry</div>
+        <div class="lt1 target codedText">strawberry Chocolate strawberry</div>
+        <div class="lt2 target codedText fromRight">strawberry Chocolate strawberry</div>
+        <div class="lt1 target codedText">strawberry Chocolate strawberry</div>
+        <div class="lt2 target codedText fromRight">strawberry Chocolate strawberry</div>
+        <div class="lt1 target codedText">strawberry Chocolate strawberry</div>
 
     </div>
 
-    <div class="jumbotron text-center" style="background-size: cover"id="overlay3">
-        <h1><a class="do-not-disturb" href="https://www.augustwarshauer.com" style="text-decoration: none; color: white; font-family: Times New Roman, Times, serif; font-size: 60px;">AUGUST WARSHAUER</a></h1>
-    </div>
-    
-    <div style="opacity: 0.5;  margin-top: 0px; margin-bottom: 0px;">
-        <canvas id="game-board"></canvas>
-        <script src="modules/constants.mjs" type="module"></script>
-        <script src="modules/cell.mjs" type="module"></script>
-        <script src="modules/board.mjs" type="module"></script>
-        <script src="modules/game.mjs" type="module"></script>
-        <script src="./main.mjs" type="module"></script>
-    </div>
-    
- 
-
-
-
-
-
-
 
 
     
 
+
+
+
+
+
+
+
+</div>
+
+
+
+
+    <div class="cursor-outline"></div>
+    <div class="cursor-dot"></div>
+  
+
     
+    <!-- partial -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js'></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/perlin.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+
+
+    <script src="wompwomp.js" ></script>
+      
 </body>
 </html>
+
+  

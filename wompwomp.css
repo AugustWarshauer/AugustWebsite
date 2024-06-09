@@ -1,0 +1,348 @@
+body {
+    background-color: rgb(23, 23, 23);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition: filter 0.5s ease-in-out;
+
+  }
+  
+.inverted {
+    filter: invert(100%);
+}
+
+
+  .staircase {
+    width: 50%;
+    padding: 0;
+    font-size: 70px;
+    height: 0px;
+  }
+  
+
+  
+  .stairs > .panel,
+  .stairs > .stair {
+    padding: 0 .1em
+  }
+  
+  .stairs > .panel,
+  .stairs > .stair {
+    overflow: hidden;
+    font-size: 1em;
+    margin: -1px 0;
+    white-space: nowrap;
+    line-height: .8em;
+    height: .8em
+  }
+  
+
+  
+
+/*   
+  .stairs > .stair:nth-of-type(odd) {
+    transform: skew(60deg, -30deg) scaley(.6666666667) ;
+  }
+  
+  .stairs > .stair:nth-of-type(even) {
+    transform: skew(0deg, -30deg) scaley(1.3333333333) ;
+  } */
+
+/*     
+  .stairs > .stair:nth-of-type(odd) {
+    transform: skew(0deg, 30deg) rotate(-90deg) ;
+  }
+  
+  .stairs > .stair:nth-of-type(even) {
+    transform: skew(0deg, -30deg) rotate(-90deg);
+  }
+   */
+
+  .house {
+    text-transform: uppercase;
+    position: absolute;
+    width: 0;
+    left:0;
+    margin-top: 60%;
+    padding: 0;
+
+}
+
+.stairs {
+    transform: rotate(90deg) translateX(-20%);
+    position: absolute;
+    left: 10vw;
+    top: 0;
+    height: 0;
+}
+
+
+  .stair:nth-of-type(1) {
+    position: relative;
+    transform: skew(0deg, 30deg) rotate(-90deg) ;
+  }
+
+  .stair:nth-of-type(2) {
+    position: relative;
+    left: 0.80em;
+    transform: skew(0deg, -30deg) rotate(-90deg) translateX(0.785em);
+  }
+
+  .stair:nth-of-type(3) {
+    position: relative;
+    left: 1.6em;
+    transform: skew(0deg, 30deg) rotate(-90deg) translateX(1.575em);
+  }
+
+  .stair:nth-of-type(4) {
+    position: relative;
+    left: 2.4em;
+    transform: skew(0deg, -30deg) rotate(-90deg) translateX(2.36em);
+  }
+ 
+  .stair:nth-of-type(5) {
+    position: relative;
+    left: 3.2em;
+    transform: skew(0deg, 30deg) rotate(-90deg) translateX(3.15em);
+  }
+
+  .stair:nth-of-type(6) {
+    position: relative;
+    left: 4.0em;
+    transform: skew(0deg, -30deg) rotate(-90deg) translateX(3.937em);
+  }
+  
+  .panel.bye {
+    transform: translatex(-4px);
+  }
+  
+  .panel {
+    width: 90vw;
+    color: white;
+    display: block;
+    position: relative;
+    animation: updown 10s ease-in-out infinite ; /* Change duration as needed */
+
+  }
+
+  .panel:hover {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    color: transparent;
+  }
+  
+
+  @keyframes updown {
+    0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(calc(var(--panel-height) * -1/2)); /* Moves panel up */
+      }
+      100% {
+        transform: translateY(0); /* Moves panel down */
+      }
+
+  }
+
+  @media (max-width: 1072px) {
+    .house{
+        transform: scale(0.8);
+    }
+    .panel{
+        width: 112.5vw;
+    }
+}
+
+@media (max-width: 880px) {
+    .house{
+        transform: scale(0.4);
+    }
+    .panel{
+        width: 190vw;
+    }
+}
+
+
+
+
+
+
+
+.m1{
+    padding-top: 2%;
+}
+
+  .marquee {
+    color: white;
+    -webkit-text-fill-color: white;
+    display: flex;
+    overflow: hidden;
+    height: 10vh;
+    user-select: none;
+    gap: 2rem;
+    padding: 0;
+
+  /*background-color: green;*/
+     /*transform: skewY(-3deg); */
+     /*transform: rotate(-5deg) translateY(-30px) translateX(50px);*/
+  }
+  
+  
+  .marquee:hover {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    color: transparent;
+    transition: all 0.5s ease-in-out;
+    -webkit-font-smoothing: antialiased;
+}
+
+  
+  .marquee__group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-width: 100%;
+    height: fit-content;
+    animation: scroll 60s linear infinite;
+  }
+  
+  .marquee__group span {
+    font-size: 2.5vw;
+    font-weight: 800;
+    white-space: nowrap;
+    font-family: 'Syne', sans-serif !important;
+    text-transform: uppercase;
+    
+  }
+
+  .marquee__group2 span {
+    font-size: 8vw;
+    font-weight: 800;
+    white-space: nowrap;
+    font-family: 'Syne', sans-serif !important;
+    text-transform: uppercase;
+    
+  }
+
+  .marquee2 {
+    height: 17vh;
+  }
+  
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - 2rem));
+    }
+  }
+
+
+ .pdate{
+    font-size: small;
+    writing-mode: vertical-rl;
+    line-height: 100%;
+    padding-top: 0;
+    margin-top: 0;
+ } 
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  #animation-container {
+    width: 100%;
+    height: 600vh;
+    background-color: rgb(23, 23, 23);
+    position: absolute;
+
+  }
+  .branch {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+  }
+
+
+
+
+
+
+
+.cursor-outline, .cursor-dot {
+    opacity: 0;
+}
+
+.cursor-outline {
+    border-radius: 50px;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: solid 1px #fff;
+    mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+/* Visible when running fancy.js */
+.cursor-dot {
+    mix-blend-mode: difference;
+    border-radius: 50px;
+    position: absolute;
+     width: 80px;
+    height: 80px;
+    background-color: white;
+    border: solid 1px #fff;
+    pointer-events: none;
+}
+
+
+.cursor-outline, 
+.cursor-dot {
+    /* needed for target (shared) */
+    top: 50%;
+    left: 10%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+
+
+.codedText {
+    background: transparent;
+    white-space: nowrap;
+  }
+.lt1{
+    color: white; 
+    margin-top: 0vh;
+    margin-left: 10vw;
+    font-size: 50px;
+    width: 90vw;
+}
+.lt2{
+    color: white; 
+    margin-top: 0vh;
+    margin-right: 10vw;
+    width: 90vw;
+    font-size: 50px;
+    text-align: right;
+}
+.beginDecode {
+    margin-top: 90vh;
+}
