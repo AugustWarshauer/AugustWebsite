@@ -18,7 +18,7 @@ body {
     width: 50%;
     padding: 0;
     font-size: 70px;
-    height: 0px;
+    height: 0;
   }
   
 
@@ -113,7 +113,41 @@ body {
     left: 4.0em;
     transform: skew(0deg, -30deg) rotate(-90deg) translateX(3.937em);
   }
+  .stair:nth-of-type(7) {
+    position: relative;
+    left: 4.8em;
+    transform: skew(0deg, 30deg) rotate(-90deg) translateX(4.724em);
+  }
+  .stair:nth-of-type(8) {
+    position: relative;
+    left: 5.6em;
+    transform: skew(0deg, -30deg) rotate(-90deg) translateX(5.511em);
+  }
+  .stair:nth-of-type(9) {
+    position: relative;
+    left: 6.4em;
+    transform: skew(0deg, 30deg) rotate(-90deg) translateX(6.298em);
+  }
+  .stair:nth-of-type(10) {
+    position: relative;
+    left: 7.2em;
+    transform: skew(0deg, -30deg) rotate(-90deg) translateX(7.085em);
+  }
+  .stair:nth-of-type(11) {
+    position: relative;
+    left: 8.0em;
+    transform: skew(0deg, 30deg) rotate(-90deg) translateX(7.872em);
+  }
+  .stair:nth-of-type(12) {
+    position: relative;
+    left: 8.8em;
+    transform: skew(0deg, -30deg) rotate(-90deg) translateX(8.659em);
+  }
   
+
+
+
+
   .panel.bye {
     transform: translatex(-4px);
   }
